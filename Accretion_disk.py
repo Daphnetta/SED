@@ -3,24 +3,25 @@ from math import log, log10, sqrt, sin, cos, asin, radians, degrees, pi, exp
 from scipy import integrate
 import numpy as np
 
-M_sun = 1.99e33           # g
-R_sun = 6.96e10           # cm
+
+M_sun = 1.99e33           #g
+R_sun = 6.96e10           #cm 
 M_star = M_sun            # g
-R_star = 2*R_sun          # cm
+R_star = 2*R_sun         # cm
 
 d = 4.629e10              # cm
 M_dot = M_star*3.1536e-1  # g/c 
-R_D = 2*R_star     # cm
+R_D = 2*R_star            # cm
 m_dot = 1
 m = 1
-i = 1              # grad
-T_eff_star = 4e3   # K
+i = 1                     # grad
+T_eff_star = 4e3          # K
 
-G = 6.67e-8        # cm3*g-1*s-2
-sigma = 5.67e-5    # g*cm-3**K-4
-h = 6.626e-27      # g*cm2*s-1
-c = 3e10           # cm/s
-k_B = 1.38e-16     # g*cm2*s-2*K-1
+G = 6.67e-8               # cm3*g-1*s-2
+sigma = 5.67e-5           # g*cm-3**K-4
+h = 6.626e-27             # g*cm2*s-1
+c = 3e10                  # cm/s
+k_B = 1.38e-16            # g*cm2*s-2*K-1
 
 lamst = [] 	# пустой список для значений lambda
 lamfst = [] # пустой список для значений lambda*F_lambda

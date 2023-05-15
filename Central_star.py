@@ -30,12 +30,12 @@ lambdas = 10**log_lambdas
 
 for lam in lambdas:
 	print(lam) # для отслеживания процесса цикла
-	lamst.append(lam)
+	lamst.append(lam) # запись в список lambda
 	b = (2*pi*h*c**2)/(lam**5) # константа к I_lambda
 	с = (pi/2)*(1 + cos(radians(i)))*(R_star/d)**2 # константа к F_lambda
 	I = b*(1/(exp((h*c)/(lam*k_B*T_eff_star))-1))
 	f = с*I
-	lamfst.append(lam*f) 
+	lamfst.append(lam*f) # запись в список lambda*F_lambda
 
 print(lamst)
 print(lamfst)
