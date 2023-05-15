@@ -23,7 +23,7 @@ lamst = [] 	# пустой список для значений lambda
 lamfst = [] # пустой список для значений lambda*F_lambda
 
 lambda_min = 1e-6  # cm
-lambda_max = 1e-3  # cm
+lambda_max = 1e-1  # cm
 N = 200
 log_lambdas = np.linspace(log10(lambda_min), log10(lambda_max), N)
 lambdas = 10**log_lambdas
@@ -47,6 +47,7 @@ print(lamfst)
 ax = plt.gca()
 ax.set_xscale("log")
 ax.set_yscale("log")
+ax.set_ylim([10**7, 10**12])
 plt.plot(lamst, lamfst,':m', label='Star') # построение графика
 plt.xlabel('$\\log \\lambda\; [ \mathrm{cm}$]')
 plt.ylabel('$\\log \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
