@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 from math import sqrt, sin, cos, asin, radians, degrees, pi, exp, log
 from scipy import integrate
 import numpy as np
-#print(sin(radians(90)))
 
 M_star = 2e33      # g
 R_star = 1.4e11    # cm
@@ -20,16 +19,27 @@ h = 6.626e-27      # g*cm2*s-1
 c = 3e10           # cm/s
 k_B = 1.38e-16     # g*cm2*s-2*K-1
 
-lst = []
-ast = []
+lamst = [] 	# пустой список для значений lambda
+lamfst = [] # пустой список для значений lambda*F_lambda
 
-bst = []
-for lam in np.arange (10**(-6) , 10**(-3), 10**(-6)) :
-	lst.append(log(lam))
+lambda_min = 1e-6  # cm
+lambda_max = 1e-1  # cm
+N = 200
+log_lambdas = np.linspace(log10(lambda_min), log10(lambda_max), N)
+lambdas = 10**log_lambdas
+
+r_min = 0  	        # cm
+r_max = R_star      # cm
+N_r = 1e8
+r_s = np.arange(r_min, r_max, N_r)
+
+for lam in lambdas:
+	print(lam) # для отслеживания процесса цикла
+	lamst.append(lam)
 	#accretion disk
 	f_all_1 = (0,0)
 	f_all_2 = (0,0)
-	for r in np.arange (R_star, R_D, R_star/100) :
+	for r in r_s :
 		Phi = lambda r: asin(R_star/r)
 		F_V = lambda r: ((3*G*M_star*M_dot)/(8*pi*r**3))*(1-sqrt(R_star/r))
 		F_A = lambda r: ((sigma/pi)*(T_eff_star)**4)*(Phi(r)-(sin(2*Phi(r)))/2)
@@ -45,12 +55,17 @@ for lam in np.arange (10**(-6) , 10**(-3), 10**(-6)) :
 			Interg = lambda x: ((2*h*c**2)/(lam**5))*((R_star/d)**2)* cos(radians(i)) * ((pi+2*gamma_0)/(exp((h*c)/(lam*k_B*T_D(r)))-1))*x
 			r_2 = integrate.quad(Interg, 1, R_D/R_star)
 			f_all_2 = (f_all_2[0]+r_2[0], sqrt(f_all_2[1]**2+r_2[1]**2))
-	bst.append(log(lam*(f_all_1[0]+f_all_2[0]))) 
+	bst.append(lam*(f_all_1[0]+f_all_2[0])) 
 
-print(lst)
-print(bst)
+print(lamst)
+print(lamfst)
 ax = plt.gca()
-plt.plot(lst,bst)
-
-ax.set_ylim([35, 65])
+ax.set_xscale("log")
+ax.set_yscale("log")
+ax.set_ylim([10**7, 10**12])
+plt.plot(lamst, lamfst,'--g', label='Disk') # построение графика
+plt.xlabel('$\\log \\lambda\; [ \mathrm{cm}$]')
+plt.ylabel('$\\log \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
+plt.title('Accretion disk')
+plt.legend()
 plt.show()
