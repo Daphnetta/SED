@@ -6,21 +6,21 @@ import numpy as np
 M_star = 2e33      # g
 R_star = 1.4e11    # cm
 d = 4.629e10       # cm
-M_dot = M_star/1e8  # g/c 
+M_dot = M_star*1e-8  # g/c 
 R_D = 2*R_star     # cm
 m_dot = 1
 m = 1
 i = 1              # grad
 T_eff_star = 4e3   # K
 
-G = 6.67/1e8        # cm3*g-1*s-2
-sigma = 5.67/1e5    # g*cm-3**K-4
-h = 6.626/1e27      # g*cm2*s-1
+G = 6.67e-8        # cm3*g-1*s-2
+sigma = 5.67e-5    # g*cm-3**K-4
+h = 6.626e-27      # g*cm2*s-1
 c = 3e10           # cm/s
-k_B = 1.38/1e16     # g*cm2*s-2*K-1
+k_B = 1.38e-16     # g*cm2*s-2*K-1
 
-lambda_min = 1/1e6  # cm
-lambda_max = 1/1e3  # cm
+lambda_min = 1e-6  # cm
+lambda_max = 1e-3  # cm
 N = 200
 log_lambdas = np.linspace(log10(lambda_min), log10(lambda_max), N)
 lambdas = 10**log_lambdas
