@@ -32,17 +32,18 @@ r_s = np.arange(r_min, r_max, N_r)
 
 for lam in lambdas:
 	print(lam) # для отслеживания процесса цикла
-	lamst.append(log(lam)) # запись в список log10(lambda)
-
+	lamst.append(lam)
 	b = (2*pi*h*c**2)/(lam**5) # константа к I_lambda(r)
 	с = (pi/2)*(1 + cos(radians(i)))*(R_star/d)**2 # константа к F_lambda(r)
 	I = b*(1/(exp((h*c)/(lam*k_B*T_eff_star))-1))
 	f = с*I
-	lamfst.append(log(lam+(f))) # запись в список log(lambda*F_lambda) 
+	lamfst.append(lam*f) 
 
 print(lamst)
 print(lamfst)
 ax = plt.gca()
+ax.set_xscale("log")
+ax.set_yscale("log")
 plt.plot(lamst, lamfst,':m', label='Star') # построение графика
 plt.xlabel('$\\log \\lambda\; [ \mathrm{cm}$]')
 plt.ylabel('$\\log \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
