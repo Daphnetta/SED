@@ -19,6 +19,9 @@ h = 6.626e-27      # g*cm2*s-1
 c = 3e10           # cm/s
 k_B = 1.38e-16     # g*cm2*s-2*K-1
 
+lamst = [] 	# пустой список для значений lambda
+lamfst = [] # пустой список для значений lambda*F_lambda
+
 lambda_min = 1e-6  # cm
 lambda_max = 1e-3  # cm
 N = 200
