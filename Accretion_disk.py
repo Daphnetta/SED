@@ -3,10 +3,12 @@ from math import log, log10, sqrt, sin, cos, asin, radians, degrees, pi, exp
 from scipy import integrate
 import numpy as np
 
-M_star = 2e33      # g
-R_star = 1.4e11    # cm
-d = 4.629e10       # cm
-M_dot = M_star*1e-8  # g/c 
+M_sun = 1.99e33
+R_sun = 6.96e10, 
+M_star = M_sun            # g
+R_star = 2*R_sun          # cm
+d = 4.629e10              # cm
+M_dot = M_star*3.1536e-1  # g/c 
 R_D = 2*R_star     # cm
 m_dot = 1
 m = 1
@@ -41,9 +43,7 @@ for lam in lambdas:
 	f_all_2 = (0,0)
 	for r in r_s :
 		Phi = lambda r: asin(R_star/r)
-		F_V = lambda r: ((3*G*M_star*M_dot)/(8*pi*r**3))*(1-sqrt(R_star/r))
-		F_A = lambda r: ((sigma/pi)*(T_eff_star)**4)*(Phi(r)-(sin(2*Phi(r)))/2)
-		T_D = lambda r: ((F_V(r) + F_A(r))/sigma)**0.25
+		T_eff = lambda r: 150*(r/(1.5*10**13))**-0.75
 		x = r/R_star
 		if r>R_star and r<((1/cos(radians(i)))*R_star):
 			gamma_0 = lambda x: asin(((1-(x)**(-2))**0.5)/sin(radians(i)))
