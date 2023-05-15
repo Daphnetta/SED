@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from math import sqrt, sin, cos, asin, radians, degrees, pi, exp, log
+from math import log, log10, sqrt, sin, cos, asin, radians, degrees, pi, exp
 from scipy import integrate
 import numpy as np
 
