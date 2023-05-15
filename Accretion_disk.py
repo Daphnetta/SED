@@ -33,7 +33,10 @@ lambdas = 10**log_lambdas
 r_min = 0  	        # cm
 r_max = R_star      # cm
 N_r = 1e8
-r_s = np.arange(r_min, r_max, N_r)
+rs = (r_min, r_max, N_r)
+
+def T_eff(r):
+	return 150*(r/(1.5*10**13))**-0.75
 
 for lam in lambdas:
 	print(lam) # для отслеживания процесса цикла
@@ -41,7 +44,7 @@ for lam in lambdas:
 	#accretion disk
 	f_all_1 = (0,0)
 	f_all_2 = (0,0)
-	for r in r_s :
+	for r in rs :
 		Phi = lambda r: asin(R_star/r)
 		T_eff = lambda r: 150*(r/(1.5*10**13))**-0.75
 		x = r/R_star
