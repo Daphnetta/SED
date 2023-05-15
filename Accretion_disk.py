@@ -55,7 +55,7 @@ for lam in lambdas:
 			f_all_1 = (f_all_1[0]+r_1[0], sqrt(f_all_1[1]**2+r_1[1]**2))	
 		elif r>((1/cos(radians(i)))*R_star) :
 			gamma_0 = pi/2
-			Interg = lambda x: ((2*h*c**2)/(lam**5))*((R_star/d)**2)* cos(radians(i)) * ((pi+2*gamma_0)/(exp((h*c)/(lam*k_B*T_D-eff(r)))-1))*x
+			Interg = lambda x: ((2*h*c**2)/(lam**5))*((R_star/d)**2)* cos(radians(i)) * ((pi+2*gamma_0)/(exp((h*c)/(lam*k_B*T_D_eff(r)))-1))*x
 			r_2 = integrate.quad(Interg, 1, R_D/R_star)
 			f_all_2 = (f_all_2[0]+r_2[0], sqrt(f_all_2[1]**2+r_2[1]**2))
 	lamfst.append(lam*(f_all_1[0]+f_all_2[0])) 
