@@ -46,7 +46,6 @@ for lam in lambdas:
 	f_all_2 = (0,0)
 	for r in rs :
 		Phi = lambda r: asin(R_star/r)
-		T_eff = lambda r: 150*(r/(1.5*10**13))**-0.75
 		x = r/R_star
 		if r>R_star and r<((1/cos(radians(i)))*R_star):
 			gamma_0 = lambda x: asin(((1-(x)**(-2))**0.5)/sin(radians(i)))
