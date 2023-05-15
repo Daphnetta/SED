@@ -79,8 +79,6 @@ ax.set_yscale("log")
 ax.set_ylim([10**7, 10**12])
 Star()
 Disk()
-#plt.plot(lamst, lamfst,'--g', label='Disk') # построение графика
-#plt.plot(lamst, lamfst,':m', label='Star') # построение графика
 plt.xlabel('$\\log \\lambda\; [ \mathrm{cm}$]')
 plt.ylabel('$\\log \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
 plt.title('')
