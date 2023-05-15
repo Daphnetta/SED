@@ -28,11 +28,6 @@ N = 200
 log_lambdas = np.linspace(log10(lambda_min), log10(lambda_max), N)
 lambdas = 10**log_lambdas
 
-r_min = 0  	        # cm
-r_max = R_star      # cm
-N_r = 1e8
-r_s = np.arange(r_min, r_max, N_r)
-
 for lam in lambdas:
 	print(lam) # для отслеживания процесса цикла
 	lamst.append(lam)
