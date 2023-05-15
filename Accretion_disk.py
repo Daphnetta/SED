@@ -4,24 +4,22 @@ from scipy import integrate
 import numpy as np
 #print(sin(radians(90)))
 
-M_star = 2*10**33
-R_star = 2*7*(10**10)
-d = 150* 3.086 * 10**8
-delta = (10**(-2))*R_star
-M_dot = M_star*10**(-8) 
-i = 1
-T_eff_star = 4000
-G = 6.67*10**(-8)
-sigma = 5.67*10**(-5)
-R_D = 2*R_star
-
+M_star = 2e33      # g
+R_star = 1.4e11    # cm
+d = 4.629e10       # cm
+M_dot = M_star*1e-8  # g/c 
+R_D = 2*R_star     # cm
 m_dot = 1
 m = 1
-#m_dot = M_dot/(2*10**25)
-#m = M_star/(2*10**33)
-h = 6.626* 10**(-27)
-c = 3*10**10
-k_B = 1.38*10**(-16)
+i = 1              # grad
+T_eff_star = 4e3   # K
+
+G = 6.67e-8        # cm3*g-1*s-2
+sigma = 5.67e-5    # g*cm-3**K-4
+h = 6.626e-27      # g*cm2*s-1
+c = 3e10           # cm/s
+k_B = 1.38e-16     # g*cm2*s-2*K-1
+
 lst = []
 ast = []
 
