@@ -3,33 +3,34 @@ from math import log, log10, sqrt, sin, cos, asin, radians, degrees, pi, exp
 from scipy import integrate
 import numpy as np
 
-M_star = 2e33      # g
-R_star = 1.4e11    # cm
-d = 4.629e10       # cm
-M_dot = M_star*1e-8  # g/c 
-R_D = 2*R_star     # cm
+M_sun = 1.99e33           # g
+R_sun = 6.96e10           # cm 
+M_star = M_sun            # g
+R_star = 2*R_sun          # cm
+d = 4.629e10              # cm
+M_dot = M_star*3.1536e-1  # g/c 
+R_D = 2*R_star            # cm
 m_dot = 1
 m = 1
-i = 1              # grad
-T_eff_star = 4e3   # K
+i = 1                     # grad
+T_eff_star = 4e3          # K
 
-G = 6.67e-8        # cm3*g-1*s-2
-sigma = 5.67e-5    # g*cm-3**K-4
-h = 6.626e-27      # g*cm2*s-1
-c = 3e10           # cm/s
-k_B = 1.38e-16     # g*cm2*s-2*K-1
+G = 6.67e-8               # cm3*g-1*s-2
+sigma = 5.67e-5           # g*cm-3**K-4
+h = 6.626e-27             # g*cm2*s-1
+c = 3e10                  # cm/s
+k_B = 1.38e-16            # g*cm2*s-2*K-1
 
-lamst = [] 	# пустой список для значений lambda
-lamfst = [] # пустой список для значений lambda*F_lambda
-
-lambda_min = 1e-6  # cm
-lambda_max = 1e-1  # cm
+lambda_min = 1e-6         # cm
+lambda_max = 1e-1         # cm
 N = 200
 log_lambdas = np.linspace(log10(lambda_min), log10(lambda_max), N)
 lambdas = 10**log_lambdas
 
+lamst = [] 	              # пустой список для значений lambda
+lamfst = []               # пустой список для значений lambda*F_lambda
+
 for lam in lambdas:
-	print(lam) # для отслеживания процесса цикла
 	lamst.append(lam) # запись в список lambda
 	b = (2*pi*h*c**2)/(lam**5) # константа к I_lambda
 	с = (pi/2)*(1 + cos(radians(i)))*(R_star/d)**2 # константа к F_lambda
@@ -37,8 +38,6 @@ for lam in lambdas:
 	f = с*I
 	lamfst.append(lam*f) # запись в список lambda*F_lambda
 
-print(lamst)
-print(lamfst)
 ax = plt.gca()
 ax.set_xscale("log")
 ax.set_yscale("log")
