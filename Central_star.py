@@ -12,7 +12,7 @@ M_dot = M_star*3.1536e-1  # g/c
 R_D = 2*R_star            # cm
 m_dot = 1
 m = 1
-i = 1                     # grad
+i = 0                     # grad
 T_eff_star = 4e3          # K
 
 G = 6.67e-8               # cm3*g-1*s-2
