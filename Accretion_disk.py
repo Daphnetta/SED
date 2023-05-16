@@ -47,7 +47,6 @@ for lam in lambdas:
 	f_all_1 = (0,0)
 	f_all_2 = (0,0)
 	for r in rs :
-		Phi = lambda r: asin(R_star/r)
 		x = r/R_star
 		if x>1 and x<(1/cos(radians(i))):
 			gamma_0 = lambda x: asin((cmath.sqrt(1-(x)**(-2)))/sin(radians(i)))
