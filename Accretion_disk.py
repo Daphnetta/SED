@@ -12,7 +12,7 @@ M_dot = M_star*3.1536e-1  # g/c
 R_D = 1.5e15              # cm
 m_dot = 1
 m = 1
-i = radians(0)                     # grad
+i = radians(0)            # grad
 T_eff_star = 4e3          # K
 
 G = 6.67e-8               # cm3*g-1*s-2
@@ -21,7 +21,7 @@ h = 6.626e-27             # g*cm2*s-1
 c = 3e10                  # cm/s
 k_B = 1.38e-16            # g*cm2*s-2*K-1
 
-lambda_min = 1e-12         # cm
+lambda_min = 1e-12        # cm
 lambda_max = 1e-1         # cm
 N = 200
 log_lambdas = np.linspace(log10(lambda_min), log10(lambda_max), N)
