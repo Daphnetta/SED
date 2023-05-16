@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from math import log, log10, sqrt, sin, cos, asin, radians, degrees, pi, exp
+import cmath
 from scipy import integrate
 import numpy as np
 
@@ -12,7 +13,7 @@ M_dot = M_star*3.1536e-1  # g/c
 R_D = 2*R_star            # cm
 m_dot = 1
 m = 1
-i = 1                     # grad
+i = 0                     # grad
 T_eff_star = 4e3          # K
 
 G = 6.67e-8               # cm3*g-1*s-2
@@ -29,7 +30,7 @@ lambdas = 10**log_lambdas
 
 r_min = R_star  	      # cm
 r_max = R_D               # cm
-N_r = 1e8
+N_r = 1e7
 rs = np.arange(r_min, r_max, N_r)
 
 def T_D_eff(r):
@@ -47,7 +48,7 @@ def Disk():
 			Phi = lambda r: asin(R_star/r)
 			x = r/R_star
 			if r>R_star and r<((1/cos(radians(i)))*R_star):
-				gamma_0 = lambda x: asin(((1-(x)**(-2))**0.5)/sin(radians(i)))
+				gamma_0 = lambda x: asin((cmath.sqrt(1-(x)**(-2)))/sin(radians(i)))
 				Interg = lambda x: b*((pi+2*gamma_0(x))/(exp((h*c)/(lam*k_B*T_D_eff(r/R_star)))-1))*x
 				r_1 = integrate.quad(Interg, 1, R_D/R_star)
 				f_all_1 = (f_all_1[0]+r_1[0], sqrt(f_all_1[1]**2+r_1[1]**2))	
