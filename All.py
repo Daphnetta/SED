@@ -30,7 +30,7 @@ lambdas = 10**log_lambdas
 
 r_min = R_star  	      # cm
 r_max = R_D               # cm
-N_r = 1e7
+N_r = 1e8
 rs = np.arange(r_min, r_max, N_r)
 
 def T_D_eff(r):
@@ -57,7 +57,8 @@ def Disk():
 				Interg = lambda x: b*((pi+2*gamma_0)/(exp((h*c)/(lam*k_B*T_D_eff(r)))-1))*x
 				r_2 = integrate.quad(Interg, 1, R_D/R_star)
 				f_all_2 = (f_all_2[0]+r_2[0], sqrt(f_all_2[1]**2+r_2[1]**2))
-		lamfst.append(lam*(f_all_1[0]+f_all_2[0])) 
+		lamfst.append(lam*(f_all_1[0]+f_all_2[0]))
+
 	plt.plot(lamst, lamfst,'--g', label='Disk')
 	return lamst, lamfst
 
@@ -79,7 +80,11 @@ ax.set_xscale("log")
 ax.set_yscale("log")
 ax.set_ylim([10**7, 10**16])
 Star()
+lamfall = []
+lamfall.append(lamfst)
 Disk()
+lamfall.append(lamfst)
+print(lamfall)
 plt.xlabel('$\\log \\lambda\; [ \mathrm{cm}$]')
 plt.ylabel('$\\log \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
 plt.title('')
