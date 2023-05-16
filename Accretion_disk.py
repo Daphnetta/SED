@@ -10,7 +10,7 @@ M_star = M_sun            # g
 R_star = 2*R_sun          # cm
 d = 4.629e10              # cm
 M_dot = M_star*3.1536e-1  # g/c 
-R_D = 2*R_star            # cm
+R_D = 100*R_star            # cm
 m_dot = 1
 m = 1
 i = 0                     # grad
@@ -56,7 +56,7 @@ for lam in lambdas:
 			f_all_1 = (f_all_1[0]+r_1[0], sqrt(f_all_1[1]**2+r_1[1]**2))	
 		elif x>(1/cos(radians(i))) :
 			gamma_0 = pi/2
-			Interg = lambda x: b*((pi+2*gamma_0)/(exp((h*c)/(lam*k_B*T_D_eff(r)))-1))*x
+			Interg = lambda x: b*((pi+2*gamma_0)/(exp((h*c)/(lam*k_B*T_D_eff(r/R_star)))-1))*x
 			r_2 = integrate.quad(Interg, 1, R_D/R_star)
 			f_all_2 = (f_all_2[0]+r_2[0], sqrt(f_all_2[1]**2+r_2[1]**2))
 		#print(rs)
