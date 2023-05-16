@@ -30,7 +30,7 @@ lambdas = 10**log_lambdas
 r_min = R_star  	      # cm
 r_max = R_D               # cm
 N_r = 1e8
-rs = (r_min, r_max, N_r)
+rs = np.arange(r_min, r_max, N_r)
 
 lamst = [] 	              # пустой список для значений lambda
 lamfst = []               # пустой список для значений lambda*F_lambda
@@ -61,7 +61,7 @@ for lam in lambdas:
 ax = plt.gca()
 ax.set_xscale("log")
 ax.set_yscale("log")
-ax.set_ylim([10**7, 10**12])
+ax.set_ylim([10**7, 10**16])
 plt.plot(lamst, lamfst,'--g', label='Disk') # построение графика
 plt.xlabel('$\\log \\lambda\; [ \mathrm{cm}$]')
 plt.ylabel('$\\log \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')

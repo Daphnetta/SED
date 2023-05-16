@@ -30,7 +30,7 @@ lambdas = 10**log_lambdas
 r_min = R_star  	      # cm
 r_max = R_D               # cm
 N_r = 1e8
-rs = (r_min, r_max, N_r)
+rs = np.arange(r_min, r_max, N_r)
 
 def T_D_eff(r):
 	return 150*(r/(1.5*10**13))**-0.75
@@ -76,7 +76,7 @@ def Star():
 ax = plt.gca()
 ax.set_xscale("log")
 ax.set_yscale("log")
-ax.set_ylim([10**7, 10**12])
+ax.set_ylim([10**7, 10**16])
 Star()
 Disk()
 plt.xlabel('$\\log \\lambda\; [ \mathrm{cm}$]')
