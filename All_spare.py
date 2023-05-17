@@ -12,6 +12,7 @@ alpha = 1
 l_star = 2
 disk = Disk(m, mdot, alpha, l_star)
 disk.calc_const()
+disk.import_data("solution.dat")
 
 M_star = M_sun            # g
 R_star = 2*R_sun          # cm
@@ -21,11 +22,8 @@ R_D = 100.0*au            # cm
 i = radians(0)            # grad
 T_eff_star = 4e3          # K
 
-# lambda_min = 1e-6         # cm
 lambda_max = 1e-1         # cm
 N = 200
-# log_lambdas = np.linspace(log10(lambda_min), log10(lambda_max), N)
-# lambdas = 10**log_lambdas
 
 def make_lambda_grid(l_min,l_max, N):
 	log_lambdas = np.linspace(log10(l_min), log10(l_max), N)
@@ -39,6 +37,10 @@ def Teff(z, r_au):
 	if z == 1:
 		return disk.Teff_v(r_au)
 	elif z == 2:
+		return disk.Teff_irr(r_au)
+	elif z == 3:
+		return disk.Tnum(r_au)
+	else:
 		return disk.Teff_irr(r_au)
 
 def gamma_0(x, i):
@@ -100,15 +102,11 @@ plt.plot(lamst, lamfst,'b', label='Star')
 
 disk_data_1 = Disk1(5e-4, 1)
 disk_data_2 = Disk1(1e-4, 2)
-# lamfall_1 = np.array([Star(1e-6),Disk1(3e-4, z)]).sum(axis=0).tolist()
-# z=2
-# lamfall_2 = np.array([Star(1e-6),Disk1(3e-4, z)]).sum(axis=0).tolist()
-#print(lamfall)
+disk_data_3 = Disk1(1e-3, 3)
 
-# plt.plot(lamst, lamfall_1,':g', label='T_eff_v')
-# plt.plot(lamst, lamfall_2,':m', label='T_eff_irr')
 plt.plot(disk_data_1[0], disk_data_1[1],':g', label='T_eff_v')
 plt.plot(disk_data_2[0], disk_data_2[1],':m', label='T_eff_irr')
+plt.plot(disk_data_3[0], disk_data_3[1],'--r', label='T_eff_num')
 
 plt.xlabel('$\\log \\lambda\; [ \mathrm{cm}$]')
 plt.ylabel('$\\log \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
