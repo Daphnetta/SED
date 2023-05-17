@@ -10,7 +10,6 @@ m = 1
 mdot = 1
 alpha = 1
 l_star = 2
-r_au = 1
 disk = Disk(m, mdot, alpha, l_star)
 disk.calc_const()
 
@@ -28,7 +27,7 @@ N = 200
 log_lambdas = np.linspace(log10(lambda_min), log10(lambda_max), N)
 lambdas = 10**log_lambdas
 
-x_min = 3
+x_min = 1 * au / R_star
 x_max = R_D / R_star
 
 def Teff(z, r_au):
@@ -44,11 +43,11 @@ def gamma_0(x, i):
         return 0.5 * pi
 
 def subint(x, lam):
-	arg = h*c / (lam*k*Teff(z, r_au))
-	if (arg < 700):
-		return x*(pi + 2.0 * gamma_0(x, i)) / (exp(arg) - 1)
-	else:
-		return x*(pi + 2.0 * gamma_0(x, i)) / (arg)
+    arg = h * c / (lam * k * Teff(z, x * R_star / au))
+    if (arg < 700):
+        return x * (pi + 2.0 * gamma_0(x, i)) / (exp(arg) - 1)
+    else:
+        return x * (pi + 2.0 * gamma_0(x, i)) / (arg)
 
 def Disk1(z):
 	lamst = []	# пустой список для значений lambda
