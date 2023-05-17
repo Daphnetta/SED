@@ -7,12 +7,12 @@ M_sun = 1.99e33           # g
 R_sun = 6.96e10           # cm 
 M_star = M_sun            # g
 R_star = 2*R_sun          # cm
-d = 4.629e10              # cm
+d = 4.629e20              # cm
 M_dot = M_star*3.1536e-1  # g/c 
-R_D = 2*R_star            # cm
+R_D = 1.5e15            # cm
 m_dot = 1
 m = 1
-i = 0                     # grad
+i = radians(0)                     # grad
 T_eff_star = 4e3          # K
 
 G = 6.67e-8               # cm3*g-1*s-2
@@ -33,7 +33,7 @@ lamfst = []               # пустой список для значений la
 for lam in lambdas:
 	lamst.append(lam) # запись в список lambda
 	b = (2*pi*h*c**2)/(lam**5) # константа к I_lambda
-	с = (pi/2)*(1 + cos(radians(i)))*(R_star/d)**2 # константа к F_lambda
+	с = (pi/2)*(1 + cos(i))*(R_star/d)**2 # константа к F_lambda
 	I = b*(1/(exp((h*c)/(lam*k_B*T_eff_star))-1))
 	f = с*I
 	lamfst.append(lam*f) # запись в список lambda*F_lambda
@@ -41,7 +41,7 @@ for lam in lambdas:
 ax = plt.gca()
 ax.set_xscale("log")
 ax.set_yscale("log")
-ax.set_ylim([10**7, 10**12])
+ax.set_ylim([10**-15, 10**-4])
 plt.plot(lamst, lamfst,':m', label='Star') # построение графика
 plt.xlabel('$\\log \\lambda\; [ \mathrm{cm}$]')
 plt.ylabel('$\\log \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
