@@ -5,29 +5,22 @@ import numpy as np
 import sys
 sys.path.append("./")
 from disk_r_structure import Disk
+from const import pc, M_sun, au, k, R_sun, year, h, c
 m = 1
 mdot = 1
 alpha = 1
 l_star = 2
-r_au = 10
+r_au = 1
 disk = Disk(m, mdot, alpha, l_star)
 disk.calc_const()
 
-M_sun = 1.99e33           # g
-R_sun = 6.96e10           # cm 
 M_star = M_sun            # g
 R_star = 2*R_sun          # cm
-d = 4.629e20              # cm
-M_dot = M_star*3.1536e-1  # g/c 
-R_D = 1.5e15              # cm
+d = 150.0*pc              # cm
+M_dot = 1.0e-8*M_sun/year # g/c 
+R_D = 100.0*au            # cm
 i = radians(0)            # grad
 T_eff_star = 4e3          # K
-
-G = 6.67e-8               # cm3*g-1*s-2
-sigma = 5.67e-5           # g*cm-3**K-4
-h = 6.626e-27             # g*cm2*s-1
-c = 3e10                  # cm/s
-k_B = 1.38e-16            # g*cm2*s-2*K-1
 
 lambda_min = 1e-6         # cm
 lambda_max = 1e-1         # cm
@@ -51,7 +44,7 @@ def gamma_0(x, i):
         return 0.5 * pi
 
 def subint(x, lam):
-	arg = h*c / (lam*k_B*Teff(z, r_au))
+	arg = h*c / (lam*k*Teff(z, r_au))
 	if (arg < 700):
 		return x*(pi + 2.0 * gamma_0(x, i)) / (exp(arg) - 1)
 	else:
@@ -84,7 +77,7 @@ def Star():
 		lamst.append(lam) # запись в список lambda
 		b = (2*pi*h*c**2)/(lam**5) # константа к I_lambda
 		с = (pi/2)*(1 + cos(i))*(R_star/d)**2 # константа к F_lambda
-		I = b*(1/(exp((h*c)/(lam*k_B*T_eff_star))-1))
+		I = b*(1/(exp((h*c)/(lam*k*T_eff_star))-1))
 		f = с*I
 		lamfst.append(lam*f) # запись в список lambda*F_lambda
 	return lamfst
