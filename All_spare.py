@@ -21,11 +21,16 @@ R_D = 100.0*au            # cm
 i = radians(0)            # grad
 T_eff_star = 4e3          # K
 
-lambda_min = 1e-6         # cm
+# lambda_min = 1e-6         # cm
 lambda_max = 1e-1         # cm
 N = 200
-log_lambdas = np.linspace(log10(lambda_min), log10(lambda_max), N)
-lambdas = 10**log_lambdas
+# log_lambdas = np.linspace(log10(lambda_min), log10(lambda_max), N)
+# lambdas = 10**log_lambdas
+
+def make_lambda_grid(l_min,l_max, N):
+	log_lambdas = np.linspace(log10(l_min), log10(l_max), N)
+	lambdas = 10**log_lambdas
+	return lambdas
 
 x_min = 1 * au / R_star
 x_max = R_D / R_star
@@ -37,41 +42,44 @@ def Teff(z, r_au):
 		return disk.Teff_irr(r_au)
 
 def gamma_0(x, i):
-    if ((1 < x) and (x < 1.0 / cos(i))):
-        return asin(sqrt(1 - x**(-2)) / sin(i))
-    else:
-        return 0.5 * pi
+	if ((1 < x) and (x < 1.0 / cos(i))):
+		return asin(sqrt(1 - x**(-2)) / sin(i))
+	else:
+		return 0.5 * pi
 
-def subint(x, lam):
-    arg = h * c / (lam * k * Teff(z, x * R_star / au))
-    if (arg < 700):
-        return x * (pi + 2.0 * gamma_0(x, i)) / (exp(arg) - 1)
-    else:
-        return x * (pi + 2.0 * gamma_0(x, i)) / (arg)
+def subint(z, x, lam):
+	arg = h * c / (lam * k * Teff(z, x * R_star / au))
+	if (arg < 700):
+		return x * (pi + 2.0 * gamma_0(x, i)) / (exp(arg) - 1)
+	else:
+		return x * (pi + 2.0 * gamma_0(x, i)) / (arg)
 
-def Disk1(z):
+def Disk1(lambda_min, z):
 	lamst = []	# пустой список для значений lambda
 	lamfst = [] # пустой список для значений lambda*F_lambda
+	lambdas = make_lambda_grid(lambda_min, lambda_max, N)
+
 	for lam in lambdas:
 		lamst.append(lam)
 		#print(lam)
 		b = ((2*h*c**2)/(lam**5))*((R_star/d)**2)* cos(i) # константа к I_lambda
 		f_all_1 = (0,0)
-		Interg = lambda x: b*subint(x, lam)
+		Interg = lambda x: b*subint(z, x, lam)
 		r_1 = integrate.quad(Interg, x_min, x_max)
 		f_all_1 = (f_all_1[0]+r_1[0], sqrt(f_all_1[1]**2+r_1[1]**2))	
 		#print(rs)
-		if lam < 3e-4:
+		if lam < 3e-5:
 			lamfst.append(0)
 		else:
 			lamfst.append(lam*(f_all_1[0])) 
 
 	#plt.plot(lamst, lamfst,'--g', label='Disk')
-	return lamfst
+	return [lamst, lamfst]
 
-def Star():
+def Star(lambda_min):
 	lamst = [] 	# пустой список для значений lambda
 	lamfst = [] # пустой список для значений lambda*F_lambda
+	lambdas = make_lambda_grid(lambda_min, lambda_max, N)
 	for lam in lambdas:
 		lamst.append(lam) # запись в список lambda
 		b = (2*pi*h*c**2)/(lam**5) # константа к I_lambda
@@ -79,25 +87,29 @@ def Star():
 		I = b*(1/(exp((h*c)/(lam*k*T_eff_star))-1))
 		f = с*I
 		lamfst.append(lam*f) # запись в список lambda*F_lambda
-	return lamfst
+	return [lamst, lamfst]
 
 ax = plt.gca()
 ax.set_xscale("log")
 ax.set_yscale("log")
 ax.set_ylim([10**-15, 10**-4])
 #ax.set_xlim([10**-6, 10**-1])
-lamst = []
-for lam in lambdas:
-	lamst.append(lam)
-lamfst = Star()
+
+[lamst, lamfst] = Star(1e-6)
 plt.plot(lamst, lamfst,'b', label='Star')
-z=1
-lamfall_1 = np.array([Star(),Disk1(z)]).sum(axis=0).tolist()
-z=2
-lamfall_2 = np.array([Star(),Disk1(z)]).sum(axis=0).tolist()
+
+disk_data_1 = Disk1(5e-4, 1)
+disk_data_2 = Disk1(1e-4, 2)
+# lamfall_1 = np.array([Star(1e-6),Disk1(3e-4, z)]).sum(axis=0).tolist()
+# z=2
+# lamfall_2 = np.array([Star(1e-6),Disk1(3e-4, z)]).sum(axis=0).tolist()
 #print(lamfall)
-plt.plot(lamst, lamfall_1,':g', label='T_eff_v')
-plt.plot(lamst, lamfall_2,':m', label='T_eff_irr')
+
+# plt.plot(lamst, lamfall_1,':g', label='T_eff_v')
+# plt.plot(lamst, lamfall_2,':m', label='T_eff_irr')
+plt.plot(disk_data_1[0], disk_data_1[1],':g', label='T_eff_v')
+plt.plot(disk_data_2[0], disk_data_2[1],':m', label='T_eff_irr')
+
 plt.xlabel('$\\log \\lambda\; [ \mathrm{cm}$]')
 plt.ylabel('$\\log \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
 plt.title('r_au=10')
