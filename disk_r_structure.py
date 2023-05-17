@@ -11,10 +11,7 @@ Created on Wed Jan  6 00:12:11 2021
 """
 
 import numpy as np
-import sys
-sys.path.append("./")
-# подключение модуля с физическими константами
-from const import G, k, m_p, M_sun, au, mu, Rg
+from scipy.interpolate import interp1d
 
 class Disk:
     def __init__(self, m, mdot, alpha, l_star):
@@ -26,7 +23,7 @@ class Disk:
         m : число
             масса звезды, в массах Солнца.
         mdot : число
-            масса звезды, в массах Солнца.
+            темп аккреции, в единицах 10^(-8)*Msun/год.
         alpha : число
             параметр турбулетности, в единицах 0.01.
         l_star : число
@@ -77,7 +74,28 @@ class Disk:
         self.m = m_in
         self.m_dot = mdot_in
         self.alpha = alpha_in
-    
+
+    def import_data(self, file_name):
+        """
+        Чтение файла данных с результатами расчетов структуры диска
+
+        Parameters
+        ----------
+        file_name : строка
+            имя файла данных.
+
+        Returns
+        -------
+        None.
+
+        """
+        data = np.loadtxt(file_name, skiprows=1)
+        r = data[:, 0]
+        Teff = data[:, 6]
+        
+        method = 'cubic'
+        self.T_i = interp1d(r, Teff, method)
+        
     # ----- Радиальные профили основных величин -----
     
     def T(self, r_au):
@@ -126,4 +144,20 @@ class Disk:
         Температура газа на заданном расстоянии r_au, К.
     
         """
-        return self.C_Teff_irr * r_au**(-0.5)    
+        return self.C_Teff_irr * r_au**(-0.5)
+
+    def Tnum(self, r_au):
+        """
+        Зависимость эффективной температуры газа от радиального расстояния из численного расчета структуры диска
+    
+        Parameters
+        ----------
+        r_au : число
+            радиальное расстояние от звезды, в а.е.
+    
+        Returns
+        -------
+        Температура газа на заданном расстоянии r_au, К.
+    
+        """
+        return self.T_i(r_au)    
