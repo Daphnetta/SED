@@ -28,7 +28,7 @@ class Disk:
         mdot : число
             масса звезды, в массах Солнца.
         alpha : число
-            масса звезды, в массах Солнца.
+            параметр турбулетности, в единицах 0.01.
         l_star : число
             светимость звезды, в светимостях Солнца.
             
@@ -52,7 +52,7 @@ class Disk:
         """
         
         self.C_T = 240 * self.m**(0.375) * self.alpha**(-0.25) * self.mdot**(0.5)
-        self.C_Teff_v = 150.0 * (self.m_dot * self.m)**0.25
+        self.C_Teff_v = 150.0 * (self.mdot * self.m)**0.25
         self.C_Teff_irr = 280.0 * self.l_star**0.25
         self.C_H = 0.03 * self.alpha**(-0.125) * self.mdot**(0.25) * self.m**(-0.3125)
     
