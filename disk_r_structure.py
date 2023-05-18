@@ -90,11 +90,11 @@ class Disk:
 
         """
         data = np.loadtxt(file_name, skiprows=1)
-        r = data[:, 0]
+        self.r = data[:, 0]
         Teff = data[:, 6]
         
         method = 'cubic'
-        self.T_i = interp1d(r, Teff, method)
+        self.T_i = interp1d(self.r, Teff, method)
         
     # ----- Радиальные профили основных величин -----
     
@@ -160,4 +160,10 @@ class Disk:
         Температура газа на заданном расстоянии r_au, К.
     
         """
-        return self.T_i(r_au)    
+        return self.T_i(r_au)
+    
+    def Get_r_in(self):
+        return self.r[0]
+    
+    def Get_r_out(self):
+        return self.r[(self.r).size - 1]
