@@ -76,6 +76,10 @@ def Disk1(lambda_min, z):
 			lamfst.append(lam*(f_all_1[0])) 
 
 	#plt.plot(lamst, lamfst,'--g', label='Disk')
+	s_log = list(zip([log(w) for w in lamst], [log(w) for w in lamfst]))
+	k_xy_log = list([(t[1][1] - t[0][1]) / (t[1][0] - t[0][0]) for t in zip(s_log, s_log[1:])])
+	#print(k_xy_log[155:185])
+	plt.plot(lamst[155:185], lamfst[155:185], 'b')
 	return [lamst, lamfst]
 
 def Star(lambda_min):
@@ -89,16 +93,27 @@ def Star(lambda_min):
 		I = b*(1/(exp((h*c)/(lam*k*T_eff_star))-1))
 		f = с*I
 		lamfst.append(lam*f) # запись в список lambda*F_lambda
+	s_log = list(zip([log(w) for w in lamst], [log(w) for w in lamfst]))
+	k_xy_log = list([(t[1][1] - t[0][1]) / (t[1][0] - t[0][0]) for t in zip(s_log, s_log[1:])])
+	#print(k_xy_log[130:151])
+	plt.plot(lamst[130:151], lamfst[130:151], 'b')
+
+
+#	listA = [1, 2, 3]
+#listB = [4, 5, 6]
+#products = [x * y for x, y in zip(listA, listB)]
+	#t = zip(s, s[1:])
+	#print[t]
 	return [lamst, lamfst]
 
 ax = plt.gca()
 ax.set_xscale("log")
 ax.set_yscale("log")
 ax.set_ylim([10**-15, 10**-4])
-#ax.set_xlim([10**-6, 10**-1])
+ax.set_xlim([10**-6, 10**-1])
 
 [lamst, lamfst] = Star(1e-6)
-plt.plot(lamst, lamfst,'b', label='Star')
+plt.plot(lamst, lamfst,':y', label='Star')
 
 disk_data_1 = Disk1(5e-4, 1)
 disk_data_2 = Disk1(1e-4, 2)
@@ -108,8 +123,8 @@ plt.plot(disk_data_1[0], disk_data_1[1],':g', label='T_eff_v')
 plt.plot(disk_data_2[0], disk_data_2[1],':m', label='T_eff_irr')
 plt.plot(disk_data_3[0], disk_data_3[1],'--r', label='T_eff_num')
 
-plt.xlabel('$\\log \\lambda\; [ \mathrm{cm}$]')
-plt.ylabel('$\\log \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
+plt.xlabel('$ \\lambda\; [ \mathrm{cm}$]')
+plt.ylabel('$ \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
 plt.title('r_au=10')
 plt.legend()
 plt.show()
