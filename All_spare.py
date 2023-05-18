@@ -1,23 +1,22 @@
 import matplotlib.pyplot as plt
-from math import log, log10, sqrt, sin, cos, asin, radians, degrees, pi, exp
+from math import log, log10, sqrt, sin, cos, asin, radians, pi, exp
 from scipy import integrate
 import numpy as np
 import sys
 sys.path.append("./")
 from disk_r_structure import Disk
-from const import pc, M_sun, au, k, R_sun, year, h, c
+from const import pc, M_sun, au, k, R_sun, h, c
 m = 1
-mdot = 1
-alpha = 1
+mdot = 1  # = 1 for _md9_; or = 0.1 for _md9_ in datafile name
+alpha = 1 # = 1 for alpha001; = 0.1 for alpha0001; = 0.01 for alpha00001 in datafile name
 l_star = 2
 disk = Disk(m, mdot, alpha, l_star)
 disk.calc_const()
-disk.import_data("solution.dat")
+disk.import_data("./disk_data/alpha001_md8_amft01_cr17_xr30/solution.dat")
 
 M_star = M_sun            # g
 R_star = 2*R_sun          # cm
 d = 150.0*pc              # cm
-M_dot = 1.0e-8*M_sun/year # g/c 
 R_D = 100.0*au            # cm
 i = radians(0)            # grad
 T_eff_star = 4e3          # K
