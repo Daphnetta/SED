@@ -1,0 +1,24 @@
+Star parameters:
+M    = 1 M_sun
+R    = 2 R_sun
+B    = 2 kG
+L    = 2 L_sun
+L_XR = 10*10^29 erg/s
+
+Disk  characteristics:
+alpha  = 0.01
+M_dot  = 0.1*10^-7 M_sun/yr
+r_in   = 0.0518 au
+r_out  = 170 au
+M_disk = 0.083 M_sun
+
+Dead zone  characteristics: 
+r_in    = 0.22 au
+r_out   = 10.3 au
+x_bound = 1.63e-13
+
+Magnetic field strength at characteristic radii: 
+B_star(r_in)  = 1.15e+01 G
+B_disk(r_in)  = 4.70e+01 G
+B_disk(3 au)  = 1.45e-02 G
+B_disk(r_out) = 1.74e-03 G
