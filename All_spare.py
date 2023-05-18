@@ -30,8 +30,8 @@ def make_lambda_grid(l_min,l_max, N):
 	lambdas = 10**log_lambdas
 	return lambdas
 
-x_min = 1 * au / R_star
-x_max = R_D / R_star
+print("r_in  = ", disk.Get_r_in(), "au")
+print("r_out = ", R_D / au, "au")
 
 def Teff(z, r_au):
 	if z == 1:
@@ -56,7 +56,7 @@ def subint(z, x, lam):
 	else:
 		return x * (pi + 2.0 * gamma_0(x, i)) / (arg)
 
-def Disk1(lambda_min, z):
+def Disk1(lambda_min, xmin, xmax, z):
 	lamst = []	# пустой список для значений lambda
 	lamfst = [] # пустой список для значений lambda*F_lambda
 	lambdas = make_lambda_grid(lambda_min, lambda_max, N)
@@ -67,7 +67,7 @@ def Disk1(lambda_min, z):
 		b = ((2*h*c**2)/(lam**5))*((R_star/d)**2)* cos(i) # константа к I_lambda
 		f_all_1 = (0,0)
 		Interg = lambda x: b*subint(z, x, lam)
-		r_1 = integrate.quad(Interg, x_min, x_max)
+		r_1 = integrate.quad(Interg, xmin, xmax)
 		f_all_1 = (f_all_1[0]+r_1[0], sqrt(f_all_1[1]**2+r_1[1]**2))	
 		lamfst.append(lam*(f_all_1[0])) 
 
@@ -111,9 +111,14 @@ ax.set_xlim([10**-6, 10**-1])
 [lamst, lamfst] = Star(1e-6)
 plt.plot(lamst, lamfst,':y', label='Star')
 
-disk_data_1 = Disk1(5e-4, 1)
-disk_data_2 = Disk1(1e-4, 2)
-disk_data_3 = Disk1(1e-3, 3)
+x_min = 5*au/R_star
+x_max = R_D / R_star
+disk_data_1 = Disk1(5e-4,  x_min, x_max, 1)
+disk_data_2 = Disk1(1e-4,  x_min, x_max, 2)
+
+x_min = disk.Get_r_in() * au / R_star
+x_max = R_D / R_star
+disk_data_3 = Disk1(6e-4, x_min, x_max, 3)
 
 plt.plot(disk_data_1[0], disk_data_1[1],':g', label='T_eff_v')
 plt.plot(disk_data_2[0], disk_data_2[1],':m', label='T_eff_irr')
