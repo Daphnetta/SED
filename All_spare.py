@@ -69,11 +69,7 @@ def Disk1(lambda_min, z):
 		Interg = lambda x: b*subint(z, x, lam)
 		r_1 = integrate.quad(Interg, x_min, x_max)
 		f_all_1 = (f_all_1[0]+r_1[0], sqrt(f_all_1[1]**2+r_1[1]**2))	
-		#print(rs)
-		if lam < 3e-5:
-			lamfst.append(0)
-		else:
-			lamfst.append(lam*(f_all_1[0])) 
+		lamfst.append(lam*(f_all_1[0])) 
 
 	#plt.plot(lamst, lamfst,'--g', label='Disk')
 	s_log = list(zip([log(w) for w in lamst], [log(w) for w in lamfst]))
@@ -125,7 +121,6 @@ plt.plot(disk_data_3[0], disk_data_3[1],'--r', label='T_eff_num')
 
 plt.xlabel('$ \\lambda\; [ \mathrm{cm}$]')
 plt.ylabel('$ \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
-plt.title('r_au=10')
 plt.legend()
 plt.show()
 
