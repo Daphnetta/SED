@@ -132,16 +132,12 @@ ax.set_xlim([10**-6, 10**-1])
 def Result():
 
 	data = np.loadtxt("./disk_data/alpha00001_md9_amft0001_cr17_xr30/result.dat", skiprows=1)
-	#print(data)
 	lamst = data[:, 0]
-	#print(lamst)
 	lamfst = data[:, 1]
-	#print(lamst)
 	disk_data_1 = [[],[]]
 	disk_data_2 = [[],[]]
 	disk_data_3 = [[],[]]
 	disk_data_1[0] = data[:, 2]
-	#print(disk_data_1[0])
 	disk_data_1[1] = data[:, 3]
 	disk_data_2[0] = data[:, 4]
 	disk_data_2[1] = data[:, 5]
