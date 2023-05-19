@@ -131,7 +131,7 @@ disk_data_3 = Disk1(6e-4, x_min, x_max, 3)
 
 def Result():
 
-	data = np.loadtxt("./disk_data/alpha00001_md9_amft0001_cr15_xr32/result.dat", skiprows=1)
+	data = np.loadtxt("./disk_data/alpha00001_md8_amft0001_cr17_xr30/result.dat", skiprows=1)
 	lamst = data[:, 0]
 	lamfst = data[:, 1]
 	disk_data_1 = [[],[]]
@@ -155,7 +155,7 @@ def Result():
 	plt.plot(disk_data_2[0], disk_data_2[1],'m', label='T_eff_irr')
 	plt.plot(disk_data_3[0], disk_data_3[1],'r', label='T_eff_num')
 
-	data = np.loadtxt("./disk_data/alpha00001_md9_amft0001_cr15_xr32/mgd_result.dat", skiprows=1)
+	data = np.loadtxt("./disk_data/alpha00001_md8_amft0001_cr17_xr30/mgd_result.dat", skiprows=1)
 	disk_data_4[1] = data[:, 7]
 	plt.plot(disk_data_3[0], disk_data_4[1],':r', label='T_eff_num_mgd')
 
