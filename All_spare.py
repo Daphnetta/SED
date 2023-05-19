@@ -54,6 +54,9 @@ def subint(z, x, lam):
 		return x * (pi + 2.0 * gamma_0(x, i)) / (exp(arg) - 1)
 	else:
 		return x * (pi + 2.0 * gamma_0(x, i)) / (arg)
+	plt.plot(Teff(z, x * R_star / au),x * R_star / au)
+
+
 
 def Disk1(lambda_min, xmin, xmax, z):
 	lamst = []	# пустой список для значений lambda
@@ -69,6 +72,7 @@ def Disk1(lambda_min, xmin, xmax, z):
 		r_1 = integrate.quad(Interg, xmin, xmax)
 		f_all_1 = (f_all_1[0]+r_1[0], sqrt(f_all_1[1]**2+r_1[1]**2))	
 		lamfst.append(lam*(f_all_1[0])) 
+
 
 	#plt.plot(lamst, lamfst,'--g', label='Disk')
 	#s_log = list(zip([log(w) for w in lamst], [log(w) for w in lamfst]))
@@ -95,32 +99,32 @@ def Star(lambda_min):
 	#plt.plot(lamst[130:151], lamfst[130:151], 'b')
 	return [lamst, lamfst]
 
-ax = plt.gca()
-ax.set_xscale("log")
-ax.set_yscale("log")
-ax.set_ylim([10**-15, 10**-4])
-ax.set_xlim([10**-6, 10**-1])
+#ax = plt.gca()
+#ax.set_xscale("log")
+#ax.set_yscale("log")
+#ax.set_ylim([10**-15, 10**-4])
+#ax.set_xlim([10**-6, 10**-1])
 
-#[lamst, lamfst] = Star(1e-6)
+[lamst, lamfst] = Star(1e-6)
 #plt.plot(lamst, lamfst,':y', label='Star')
 
-#x_min = 5*au/R_star
-#x_max = R_D / R_star
-#disk_data_1 = Disk1(5e-4,  x_min, x_max, 1)
-#disk_data_2 = Disk1(1e-4,  x_min, x_max, 2)
+x_min = 5*au/R_star
+x_max = R_D / R_star
+disk_data_1 = Disk1(5e-4,  x_min, x_max, 1)
+disk_data_2 = Disk1(1e-4,  x_min, x_max, 2)
 
-#x_min = disk.Get_r_in() * au / R_star
-#x_max = R_D / R_star
-#disk_data_3 = Disk1(6e-4, x_min, x_max, 3)
+x_min = disk.Get_r_in() * au / R_star
+x_max = R_D / R_star
+disk_data_3 = Disk1(6e-4, x_min, x_max, 3)
 
-#plt.plot(disk_data_1[0], disk_data_1[1],':g', label='T_eff_v')
-#plt.plot(disk_data_2[0], disk_data_2[1],':m', label='T_eff_irr')
-#plt.plot(disk_data_3[0], disk_data_3[1],'--r', label='T_eff_num')
+plt.plot(disk_data_1[0], disk_data_1[1],':w', label='T_eff_v')
+plt.plot(disk_data_2[0], disk_data_2[1],':w', label='T_eff_irr')
+plt.plot(disk_data_3[0], disk_data_3[1],'--w', label='T_eff_num')
 
 #plt.xlabel('$ \\lambda\; [ \mathrm{cm}$]')
 #plt.ylabel('$ \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
 #plt.legend()
-#plt.show()
+plt.show()
 
 
 #All = np.array([lamst, lamfst])
@@ -137,6 +141,9 @@ def Result():
 	disk_data_1 = [[],[]]
 	disk_data_2 = [[],[]]
 	disk_data_3 = [[],[]]
+	disk_data_4 = [[],[]]
+	disk_data_5 = [[],[]]
+	disk_data_6 = [[],[]]
 	disk_data_1[0] = data[:, 2]
 	disk_data_1[1] = data[:, 3]
 	disk_data_2[0] = data[:, 4]
@@ -152,6 +159,20 @@ def Result():
 	plt.plot(disk_data_1[0], disk_data_1[1],':g', label='T_eff_v')
 	plt.plot(disk_data_2[0], disk_data_2[1],':m', label='T_eff_irr')
 	plt.plot(disk_data_3[0], disk_data_3[1],'--r', label='T_eff_num')
+	data = np.loadtxt("./disk_data/alpha00001_md9_amft0001_cr17_xr30/mgd_result.dat", skiprows=1)
+	disk_data_1[0] = data[:, 2]
+	disk_data_1[1] = data[:, 3]
+	disk_data_2[0] = data[:, 4]
+	disk_data_2[1] = data[:, 5]
+	disk_data_3[0] = data[:, 6]
+	disk_data_3[1] = data[:, 7]
+	plt.plot(disk_data_1[0], disk_data_1[1],':g', label='T_eff_v_mgd')
+	plt.plot(disk_data_2[0], disk_data_2[1],':m', label='T_eff_irr_mgd')
+	plt.plot(disk_data_3[0], disk_data_3[1],'--r', label='T_eff_num_mgd')
+
+
+
+
 
 
 	plt.xlabel('$ \\lambda\; [ \mathrm{cm}$]')
