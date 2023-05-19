@@ -7,12 +7,12 @@ sys.path.append("./")
 from disk_r_structure import Disk
 from const import pc, M_sun, au, k, R_sun, h, c
 m = 1
-mdot = 1  # = 1 for _md9_; or = 0.1 for _md9_ in datafile name
-alpha = 1 # = 1 for alpha001; = 0.1 for alpha0001; = 0.01 for alpha00001 in datafile name
+mdot = 1  # = 1 for _md8_; or = 0.1 for _md9_ in datafile name
+alpha = 0.01 # = 1 for alpha001; = 0.1 for alpha0001; = 0.01 for alpha00001 in datafile name
 l_star = 2
 disk = Disk(m, mdot, alpha, l_star)
 disk.calc_const()
-disk.import_data("./disk_data/alpha001_md8_amft01_cr17_xr30/solution.dat")
+disk.import_data("./disk_data/alpha00001_md8_amft0001_cr17_xr30/solution.dat")
 
 M_star = M_sun            # g
 R_star = 2*R_sun          # cm
@@ -71,10 +71,10 @@ def Disk1(lambda_min, xmin, xmax, z):
 		lamfst.append(lam*(f_all_1[0])) 
 
 	#plt.plot(lamst, lamfst,'--g', label='Disk')
-	s_log = list(zip([log(w) for w in lamst], [log(w) for w in lamfst]))
-	k_xy_log = list([(t[1][1] - t[0][1]) / (t[1][0] - t[0][0]) for t in zip(s_log, s_log[1:])])
+	#s_log = list(zip([log(w) for w in lamst], [log(w) for w in lamfst]))
+	#k_xy_log = list([(t[1][1] - t[0][1]) / (t[1][0] - t[0][0]) for t in zip(s_log, s_log[1:])])
 	#print(k_xy_log[155:185])
-	plt.plot(lamst[155:185], lamfst[155:185], 'b')
+	#plt.plot(lamst[155:185], lamfst[155:185], 'b')
 	return [lamst, lamfst]
 
 def Star(lambda_min):
@@ -88,17 +88,11 @@ def Star(lambda_min):
 		I = b*(1/(exp((h*c)/(lam*k*T_eff_star))-1))
 		f = с*I
 		lamfst.append(lam*f) # запись в список lambda*F_lambda
-	s_log = list(zip([log(w) for w in lamst], [log(w) for w in lamfst]))
-	k_xy_log = list([(t[1][1] - t[0][1]) / (t[1][0] - t[0][0]) for t in zip(s_log, s_log[1:])])
+
+	#s_log = list(zip([log(w) for w in lamst], [log(w) for w in lamfst]))
+	#k_xy_log = list([(t[1][1] - t[0][1]) / (t[1][0] - t[0][0]) for t in zip(s_log, s_log[1:])])
 	#print(k_xy_log[130:151])
-	plt.plot(lamst[130:151], lamfst[130:151], 'b')
-
-
-#	listA = [1, 2, 3]
-#listB = [4, 5, 6]
-#products = [x * y for x, y in zip(listA, listB)]
-	#t = zip(s, s[1:])
-	#print[t]
+	#plt.plot(lamst[130:151], lamfst[130:151], 'b')
 	return [lamst, lamfst]
 
 ax = plt.gca()
@@ -107,24 +101,67 @@ ax.set_yscale("log")
 ax.set_ylim([10**-15, 10**-4])
 ax.set_xlim([10**-6, 10**-1])
 
-[lamst, lamfst] = Star(1e-6)
-plt.plot(lamst, lamfst,':y', label='Star')
+#[lamst, lamfst] = Star(1e-6)
+#plt.plot(lamst, lamfst,':y', label='Star')
 
-x_min = 5*au/R_star
-x_max = R_D / R_star
-disk_data_1 = Disk1(5e-4,  x_min, x_max, 1)
-disk_data_2 = Disk1(1e-4,  x_min, x_max, 2)
+#x_min = 5*au/R_star
+#x_max = R_D / R_star
+#disk_data_1 = Disk1(5e-4,  x_min, x_max, 1)
+#disk_data_2 = Disk1(1e-4,  x_min, x_max, 2)
 
-x_min = disk.Get_r_in() * au / R_star
-x_max = R_D / R_star
-disk_data_3 = Disk1(6e-4, x_min, x_max, 3)
+#x_min = disk.Get_r_in() * au / R_star
+#x_max = R_D / R_star
+#disk_data_3 = Disk1(6e-4, x_min, x_max, 3)
 
-plt.plot(disk_data_1[0], disk_data_1[1],':g', label='T_eff_v')
-plt.plot(disk_data_2[0], disk_data_2[1],':m', label='T_eff_irr')
-plt.plot(disk_data_3[0], disk_data_3[1],'--r', label='T_eff_num')
+#plt.plot(disk_data_1[0], disk_data_1[1],':g', label='T_eff_v')
+#plt.plot(disk_data_2[0], disk_data_2[1],':m', label='T_eff_irr')
+#plt.plot(disk_data_3[0], disk_data_3[1],'--r', label='T_eff_num')
 
-plt.xlabel('$ \\lambda\; [ \mathrm{cm}$]')
-plt.ylabel('$ \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
-plt.legend()
-plt.show()
+#plt.xlabel('$ \\lambda\; [ \mathrm{cm}$]')
+#plt.ylabel('$ \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
+#plt.legend()
+#plt.show()
 
+
+#All = np.array([lamst, lamfst])
+#All1 = np.append(All, disk_data_1,axis = 0)
+#All2 = np.append(All1, disk_data_2,axis = 0)
+#All3 = np.append(All2, disk_data_3,axis = 0)
+#np.savetxt("./disk_data/alpha00001_md9_amft0001_cr17_xr30/mgd_result.dat",np.transpose(All3), delimiter=' ', newline='\n', header='1:lamst 2:lamfst 3:disk_data_1[0] 4:disk_data_1[1] 5:disk_data_1[0] 6:disk_data_1[1] 7:disk_data_3[0] 8:disk_data_3[1] ') 
+
+def Result():
+
+	data = np.loadtxt("./disk_data/alpha00001_md9_amft0001_cr17_xr30/result.dat", skiprows=1)
+	#print(data)
+	lamst = data[:, 0]
+	#print(lamst)
+	lamfst = data[:, 1]
+	#print(lamst)
+	disk_data_1 = [[],[]]
+	disk_data_2 = [[],[]]
+	disk_data_3 = [[],[]]
+	disk_data_1[0] = data[:, 2]
+	#print(disk_data_1[0])
+	disk_data_1[1] = data[:, 3]
+	disk_data_2[0] = data[:, 4]
+	disk_data_2[1] = data[:, 5]
+	disk_data_3[0] = data[:, 6]
+	disk_data_3[1] = data[:, 7]
+	ax = plt.gca()
+	ax.set_xscale("log")
+	ax.set_yscale("log")
+	ax.set_ylim([10**-15, 10**-4])
+	ax.set_xlim([10**-6, 10**-1])
+	plt.plot(lamst, lamfst,':y', label='Star')
+	plt.plot(disk_data_1[0], disk_data_1[1],':g', label='T_eff_v')
+	plt.plot(disk_data_2[0], disk_data_2[1],':m', label='T_eff_irr')
+	plt.plot(disk_data_3[0], disk_data_3[1],'--r', label='T_eff_num')
+
+
+	plt.xlabel('$ \\lambda\; [ \mathrm{cm}$]')
+	plt.ylabel('$ \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
+	plt.legend()
+	plt.show()
+
+
+Result()
