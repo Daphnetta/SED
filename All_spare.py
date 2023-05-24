@@ -169,18 +169,18 @@ def T_prof():
 	disk.import_data("./disk_data/alpha00001_md8_amft001_cr17_xr30/solution.dat")
 	T1 = []
 	T2 = []
-	log_rrrr = np.linspace(log10(x_min), log10(x_max), N)
+	log_rrrr = np.linspace(log10(disk.Get_r_in()), log10(R_D / au), N)
 	rrrr = 10**log_rrrr
 	for x in rrrr:
-		T1.append(Teff(3, x * R_star / au))
+		T1.append(Teff(3, x))
 	ax = plt.gca()
 	ax.set_xscale("log")
 	ax.set_yscale("log")
-	plt.plot(T1, rrrr,'r', label='1')
+	plt.plot(rrrr, T1, 'r', label='1')
 	disk.import_data("./disk_data/alpha00001_md8_amft001_cr17_xr30/mgd_solution.dat")
 	for x in rrrr:
-		T2.append(Teff(3, x * R_star / au))
-	plt.plot(T2, rrrr,'b', label='2')
+		T2.append(Teff(3, x))
+	plt.plot( rrrr, T2, 'b', label='2')
 	plt.xlabel('$ r$')
 	plt.ylabel('$ T_{eff}; \mathrm{K}$')
 	plt.legend()
