@@ -7,12 +7,12 @@ sys.path.append("./")
 from disk_r_structure import Disk
 from const import pc, M_sun, au, k, R_sun, h, c
 m = 1
-mdot = 0.1  # = 1 for _md8_; or = 0.1 for _md9_ in datafile name
+mdot = 1  # = 1 for _md8_; or = 0.1 for _md9_ in datafile name
 alpha = 0.01 # = 1 for alpha001; = 0.1 for alpha0001; = 0.01 for alpha00001 in datafile name
 l_star = 2
 disk = Disk(m, mdot, alpha, l_star)
 disk.calc_const()
-disk.import_data("./disk_data/alpha00001_md9_amft0001_cr17_xr30/mgd_solution.dat")
+disk.import_data("./disk_data/alpha00001_md8_amft0001_cr17_xr30/solution.dat")
 
 M_star = M_sun            # g
 R_star = 2*R_sun          # cm
@@ -95,42 +95,42 @@ def Star(lambda_min):
 	#plt.plot(lamst[130:151], lamfst[130:151], 'b')
 	return [lamst, lamfst]
 
-#ax = plt.gca()
-#ax.set_xscale("log")
-#ax.set_yscale("log")
-#ax.set_ylim([10**-15, 10**-4])
-#ax.set_xlim([10**-6, 10**-1])
+ax = plt.gca()
+ax.set_xscale("log")
+ax.set_yscale("log")
+ax.set_ylim([10**-15, 10**-4])
+ax.set_xlim([10**-6, 10**-1])
 
 [lamst, lamfst] = Star(1e-6)
-#plt.plot(lamst, lamfst,'k', label='Star')
+plt.plot(lamst, lamfst,'k', label='Star')
 
 x_min = 5*au/R_star
 x_max = R_D / R_star
-disk_data_1 = Disk1(1e-3,  x_min, x_max, 1)
+disk_data_1 = Disk1(5e-4,  x_min, x_max, 1)
 disk_data_2 = Disk1(1e-4,  x_min, x_max, 2)
 
 x_min = disk.Get_r_in() * au / R_star
 x_max = R_D / R_star
 disk_data_3 = Disk1(6e-4, x_min, x_max, 3)
 
-#plt.plot(disk_data_1[0], disk_data_1[1],'g', label='T_eff_v')
-#plt.plot(disk_data_2[0], disk_data_2[1],'b', label='T_eff_irr')
-#plt.plot(disk_data_3[0], disk_data_3[1],'r', label='T_eff_num')
+plt.plot(disk_data_1[0], disk_data_1[1],'g', label='T_eff_v')
+plt.plot(disk_data_2[0], disk_data_2[1],'b', label='T_eff_irr')
+plt.plot(disk_data_3[0], disk_data_3[1],'r', label='T_eff_num')
 
-#plt.xlabel('$ \\lambda\; [ \mathrm{cm}$]')
-#plt.ylabel('$ \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
-#plt.legend()
-#plt.show()
+plt.xlabel('$ \\lambda\; [ \mathrm{cm}$]')
+plt.ylabel('$ \\lambda F_\\lambda \; [\mathrm{erg}\,\mathrm{cm}^{-2}\,\mathrm{s}^{-1}]$')
+plt.legend()
+plt.show()
 
 #All = np.array([lamst, lamfst])
 #All1 = np.append(All, disk_data_1,axis = 0)
 #All2 = np.append(All1, disk_data_2,axis = 0)
 #All3 = np.append(All2, disk_data_3,axis = 0)
-#np.savetxt("./disk_data/alpha00001_md9_amft0001_cr17_xr30/1_mgd_result.dat",np.transpose(All3), delimiter=' ', newline='\n', header='1:lamst 2:lamfst 3:disk_data_1[0] 4:disk_data_1[1] 5:disk_data_1[0] 6:disk_data_1[1] 7:disk_data_3[0] 8:disk_data_3[1] ') 
+#np.savetxt("./disk_data/alpha00001_md8_amft0001_cr15_xr30/1_result.dat",np.transpose(All3), delimiter=' ', newline='\n', header='1:lamst 2:lamfst 3:disk_data_1[0] 4:disk_data_1[1] 5:disk_data_2[0] 6:disk_data_2[1] 7:disk_data_3[0] 8:disk_data_3[1] ') 
 
 def Result():
 
-	data = np.loadtxt("./disk_data/alpha00001_md9_amft0001_cr17_xr30/1_result.dat", skiprows=1)
+	data = np.loadtxt("./disk_data/alpha00001_md8_amft0001_cr17_xr32/1_result.dat", skiprows=1)
 	lamst = data[:, 0]
 	lamfst = data[:, 1]
 	disk_data_1 = [[],[]]
@@ -154,7 +154,7 @@ def Result():
 	plt.plot(disk_data_2[0], disk_data_2[1],'b', label='2')
 	plt.plot(disk_data_3[0], disk_data_3[1],'r', label='3')
 
-	data = np.loadtxt("./disk_data/alpha00001_md9_amft0001_cr17_xr30/1_mgd_result.dat", skiprows=1)
+	data = np.loadtxt("./disk_data/alpha00001_md8_amft0001_cr17_xr32/1_mgd_result.dat", skiprows=1)
 	disk_data_4[1] = data[:, 7]
 	plt.plot(disk_data_3[0], disk_data_4[1],':r', label='4')
 
@@ -163,10 +163,10 @@ def Result():
 	plt.legend()
 	plt.show()
 
-Result()
+#Result()
 
 def T_prof():
-	disk.import_data("./disk_data/alpha00001_md9_amft0001_cr17_xr30/solution.dat")
+	disk.import_data("./disk_data/alpha00001_md8_amft0001_cr17_xr32/solution.dat")
 	T1 = []
 	T2 = []
 	log_rrrr = np.linspace(log10(disk.Get_r_in()), log10(R_D / au), N)
@@ -177,7 +177,7 @@ def T_prof():
 	ax.set_xscale("log")
 	ax.set_yscale("log")
 	plt.plot(rrrr, T1, 'r', label='1')
-	disk.import_data("./disk_data/alpha00001_md9_amft0001_cr17_xr30/mgd_solution.dat")
+	disk.import_data("./disk_data/alpha00001_md8_amft0001_cr17_xr32/mgd_solution.dat")
 	for x in rrrr:
 		T2.append(Teff(3, x))
 	plt.plot( rrrr, T2, 'b', label='2')
