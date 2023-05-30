@@ -1,0 +1,210 @@
+--- Belmondo log-file --- 
+--- Ionization block ---
+  - Collisional ionizaton -
+  - Thermal ionization -
+  Maximal reached iterations number is 6
+--- Magnetic field 1D-block ---
+  - Ionization inside the magnetic field 1D-block -
+  - Collisional ionizaton -
+  - Thermal ionization -
+  Maximal reached iterations number is 6
+  - Solution of the induction equation -
+	maximal number of iterations (60) is reached
+	final error at r(33) = 1.11e-01 au	is 1.37e-04
+	maximal number of iterations (60) is reached
+	final error at r(32) = 1.08e-01 au	is 1.85e-03
+	maximal number of iterations (60) is reached
+	final error at r(31) = 1.06e-01 au	is 4.40e-04
+	maximal number of iterations (60) is reached
+	final error at r(29) = 1.01e-01 au	is 6.31e-04
+	maximal number of iterations (60) is reached
+	final error at r(28) = 9.86e-02 au	is 3.61e-04
+	maximal number of iterations (60) is reached
+	final error at r(26) = 9.41e-02 au	is 3.83e-03
+  Maximal reached iterations number is 60
+--- Dynamical MGD model block ---
+	maximal number of iterations (60) is reached
+	final error at r(385) = 3.62e+02 au	is 1.52e-04
+	maximal number of iterations (60) is reached
+	final error at r(366) = 2.34e+02 au	is 1.73e-04
+	maximal number of iterations (60) is reached
+	final error at r(365) = 2.29e+02 au	is 1.70e-04
+	maximal number of iterations (60) is reached
+	final error at r(364) = 2.24e+02 au	is 1.40e-04
+	maximal number of iterations (60) is reached
+	final error at r(355) = 1.82e+02 au	is 1.88e-04
+	maximal number of iterations (60) is reached
+	final error at r(352) = 1.70e+02 au	is 1.52e-04
+	maximal number of iterations (60) is reached
+	final error at r(337) = 1.20e+02 au	is 1.06e-04
+	maximal number of iterations (60) is reached
+	final error at r(335) = 1.15e+02 au	is 1.70e-04
+	maximal number of iterations (60) is reached
+	final error at r(333) = 1.10e+02 au	is 1.99e-04
+	maximal number of iterations (60) is reached
+	final error at r(323) = 8.71e+01 au	is 1.15e-04
+	maximal number of iterations (60) is reached
+	final error at r(314) = 7.08e+01 au	is 1.34e-04
+	maximal number of iterations (60) is reached
+	final error at r(312) = 6.76e+01 au	is 1.21e-04
+	maximal number of iterations (60) is reached
+	final error at r(311) = 6.61e+01 au	is 1.63e-04
+	maximal number of iterations (60) is reached
+	final error at r(309) = 6.31e+01 au	is 1.70e-04
+	maximal number of iterations (60) is reached
+	final error at r(307) = 6.03e+01 au	is 1.65e-04
+	maximal number of iterations (60) is reached
+	final error at r(306) = 5.89e+01 au	is 1.77e-04
+	maximal number of iterations (60) is reached
+	final error at r(305) = 5.76e+01 au	is 1.79e-04
+	maximal number of iterations (60) is reached
+	final error at r(304) = 5.63e+01 au	is 1.82e-04
+	maximal number of iterations (60) is reached
+	final error at r(301) = 5.25e+01 au	is 1.89e-04
+	maximal number of iterations (60) is reached
+	final error at r(300) = 5.13e+01 au	is 1.91e-04
+	maximal number of iterations (60) is reached
+	final error at r(286) = 3.72e+01 au	is 1.66e-04
+	maximal number of iterations (60) is reached
+	final error at r(276) = 2.96e+01 au	is 3.05e-04
+	maximal number of iterations (60) is reached
+	final error at r(275) = 2.89e+01 au	is 3.08e-04
+	maximal number of iterations (60) is reached
+	final error at r(270) = 2.57e+01 au	is 3.80e-04
+	maximal number of iterations (60) is reached
+	final error at r(261) = 2.09e+01 au	is 4.01e-04
+	maximal number of iterations (60) is reached
+	final error at r(259) = 2.00e+01 au	is 4.65e-04
+	maximal number of iterations (60) is reached
+	final error at r(254) = 1.78e+01 au	is 5.33e-04
+	maximal number of iterations (60) is reached
+	final error at r(249) = 1.59e+01 au	is 5.96e-04
+	maximal number of iterations (60) is reached
+	final error at r(247) = 1.52e+01 au	is 7.07e-04
+	maximal number of iterations (60) is reached
+	final error at r(243) = 1.38e+01 au	is 9.55e-04
+	maximal number of iterations (60) is reached
+	final error at r(242) = 1.35e+01 au	is 1.05e-03
+	maximal number of iterations (60) is reached
+	final error at r(232) = 1.07e+01 au	is 1.34e-04
+	maximal number of iterations (60) is reached
+	final error at r(212) = 6.78e+00 au	is 3.27e-04
+	maximal number of iterations (60) is reached
+	final error at r(208) = 6.19e+00 au	is 3.63e-04
+	maximal number of iterations (60) is reached
+	final error at r(206) = 5.91e+00 au	is 2.89e-04
+	maximal number of iterations (60) is reached
+	final error at r(204) = 5.64e+00 au	is 4.65e-04
+	maximal number of iterations (60) is reached
+	final error at r(202) = 5.39e+00 au	is 4.79e-04
+	maximal number of iterations (60) is reached
+	final error at r(199) = 5.03e+00 au	is 4.08e-04
+	maximal number of iterations (60) is reached
+	final error at r(198) = 4.92e+00 au	is 5.16e-04
+	maximal number of iterations (60) is reached
+	final error at r(196) = 4.69e+00 au	is 5.41e-04
+	maximal number of iterations (60) is reached
+	final error at r(195) = 4.59e+00 au	is 4.42e-04
+	maximal number of iterations (60) is reached
+	final error at r(194) = 4.48e+00 au	is 5.12e-04
+	maximal number of iterations (60) is reached
+	final error at r(190) = 4.09e+00 au	is 4.38e-04
+	maximal number of iterations (60) is reached
+	final error at r(189) = 4.00e+00 au	is 4.53e-04
+	maximal number of iterations (60) is reached
+	final error at r(187) = 3.82e+00 au	is 9.75e-04
+	maximal number of iterations (60) is reached
+	final error at r(184) = 3.56e+00 au	is 4.42e-04
+	maximal number of iterations (60) is reached
+	final error at r(183) = 3.48e+00 au	is 4.62e-04
+	maximal number of iterations (60) is reached
+	final error at r(182) = 3.40e+00 au	is 4.84e-04
+	maximal number of iterations (60) is reached
+	final error at r(178) = 3.10e+00 au	is 4.69e-04
+	maximal number of iterations (60) is reached
+	final error at r(167) = 2.41e+00 au	is 3.12e-04
+	maximal number of iterations (60) is reached
+	final error at r(166) = 2.36e+00 au	is 7.92e-04
+	maximal number of iterations (60) is reached
+	final error at r(165) = 2.30e+00 au	is 3.30e-04
+	maximal number of iterations (60) is reached
+	final error at r(161) = 2.10e+00 au	is 3.41e-04
+	maximal number of iterations (60) is reached
+	final error at r(158) = 1.96e+00 au	is 2.69e-04
+	maximal number of iterations (60) is reached
+	final error at r(155) = 1.83e+00 au	is 2.49e-04
+	maximal number of iterations (60) is reached
+	final error at r(153) = 1.75e+00 au	is 1.99e-04
+	maximal number of iterations (60) is reached
+	final error at r(151) = 1.67e+00 au	is 5.50e-04
+	maximal number of iterations (60) is reached
+	final error at r(149) = 1.59e+00 au	is 1.46e-03
+	maximal number of iterations (60) is reached
+	final error at r(144) = 1.42e+00 au	is 3.57e-03
+	maximal number of iterations (60) is reached
+	final error at r(140) = 1.30e+00 au	is 3.75e-03
+	maximal number of iterations (60) is reached
+	final error at r(137) = 1.21e+00 au	is 3.76e-03
+	maximal number of iterations (60) is reached
+	final error at r(136) = 1.18e+00 au	is 3.71e-03
+	maximal number of iterations (60) is reached
+	final error at r(134) = 1.13e+00 au	is 3.61e-03
+	maximal number of iterations (60) is reached
+	final error at r(133) = 1.10e+00 au	is 3.60e-03
+	maximal number of iterations (60) is reached
+	final error at r(127) = 9.61e-01 au	is 3.28e-03
+	maximal number of iterations (60) is reached
+	final error at r(104) = 5.66e-01 au	is 1.55e-03
+	maximal number of iterations (60) is reached
+	final error at r(79) = 3.19e-01 au	is 1.47e-03
+	maximal number of iterations (60) is reached
+	final error at r(73) = 2.77e-01 au	is 1.44e-03
+	maximal number of iterations (60) is reached
+	final error at r(65) = 2.31e-01 au	is 1.42e-03
+	maximal number of iterations (60) is reached
+	final error at r(53) = 1.75e-01 au	is 1.34e-03
+	maximal number of iterations (60) is reached
+	final error at r(48) = 1.56e-01 au	is 1.27e-03
+	maximal number of iterations (60) is reached
+	final error at r(45) = 1.46e-01 au	is 2.40e+00
+	maximal number of iterations (60) is reached
+	final error at r(44) = 1.42e-01 au	is 2.32e+00
+	maximal number of iterations (60) is reached
+	final error at r(43) = 1.39e-01 au	is 1.09e+00
+	maximal number of iterations (60) is reached
+	final error at r(42) = 1.36e-01 au	is 1.14e+00
+	maximal number of iterations (60) is reached
+	final error at r(41) = 1.33e-01 au	is 1.18e+00
+	maximal number of iterations (60) is reached
+	final error at r(40) = 1.30e-01 au	is 1.22e+00
+	maximal number of iterations (60) is reached
+	final error at r(39) = 1.27e-01 au	is 1.25e+00
+	maximal number of iterations (60) is reached
+	final error at r(38) = 1.24e-01 au	is 1.28e+00
+	maximal number of iterations (60) is reached
+	final error at r(37) = 1.21e-01 au	is 2.20e+00
+	maximal number of iterations (60) is reached
+	final error at r(36) = 1.18e-01 au	is 2.24e+00
+	maximal number of iterations (60) is reached
+	final error at r(35) = 1.16e-01 au	is 2.37e+00
+	maximal number of iterations (60) is reached
+	final error at r(34) = 1.13e-01 au	is 2.48e+00
+	maximal number of iterations (60) is reached
+	final error at r(33) = 1.11e-01 au	is 2.61e+00
+	maximal number of iterations (60) is reached
+	final error at r(32) = 1.08e-01 au	is 2.67e+00
+	maximal number of iterations (60) is reached
+	final error at r(24) = 8.99e-02 au	is 7.27e-01
+	maximal number of iterations (60) is reached
+	final error at r(23) = 8.79e-02 au	is 8.12e-01
+	maximal number of iterations (60) is reached
+	final error at r(22) = 8.59e-02 au	is 8.62e-01
+	maximal number of iterations (60) is reached
+	final error at r(21) = 8.39e-02 au	is 9.05e-01
+	maximal number of iterations (60) is reached
+	final error at r(20) = 8.20e-02 au	is 9.25e-01
+	maximal number of iterations (60) is reached
+	final error at r(19) = 8.01e-02 au	is 1.40e-02
+	maximal number of iterations (60) is reached
+	final error at r(16) = 7.48e-02 au	is 6.26e-04
+  Maximal reached iterations number is 60
